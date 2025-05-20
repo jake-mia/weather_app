@@ -4,7 +4,6 @@ class Interface < ApplicationController
     #setup static interface values
     @api_url = "http://api.weatherapi.com"
     @api_version = "v1"
-    #@api_end_point =  "current.json"
     @api_key = Rails.application.credentials.api_key
     @options = 'key=' + @api_key + '&aqi=no'
   end
