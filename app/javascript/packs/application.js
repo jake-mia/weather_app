@@ -8,6 +8,10 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+// Make jQuery available everywhere
+//import "jquery"
+//global.$ = require('jquery'), require('jquery-ui'), require('jquery-blockui')
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

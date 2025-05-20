@@ -1,16 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html style="">
+
   <head>
-    <title>WeatherApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>weather_app</title>
+
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Knewave|Luckiest+Guy|Paytone+One|Titan+One|Yeseva+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+
+    <!-- 2 bootstrap links here, 1 js link below -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Bootstrap js part, after jquery -->
+    <!-- 'yarn add bootstrap' now for 6.1 -->
+    <!-- script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script -->
+
+    <!-- animate.css -->
+    <!-- link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" -->
+
     <%= csrf_meta_tags %>
+    <%= action_cable_meta_tag %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= stylesheet_link_tag 'application', :media => 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', :media => 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> <!-- 'data-turbolinks-track': 'reload' -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- allow mobile responsive pages to work -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
   </head>
 
-  <body>
+  <%if @background_color.present?%>
+    <body style="background:<%=@background_color%>">
+  <%else%>
+    <!-- default background -->
+    <body style="background-color:#f2f2f2;">
+  <%end%>
+
     <%= yield %>
+
   </body>
 </html>

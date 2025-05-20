@@ -1,0 +1,92 @@
+<%= render 'layouts/modal_1' %>
+
+<div class="col-xs-12" style="position:relative;padding:0px;">
+
+  <div class="col-xs-12" style="position:absolute;border:solid 0px green;padding:0px;">
+    <!-- background image -->
+    <%=image_tag('clouds-1.jpg', :class => "", :style => "width:100%;min-width:600px;height:100%;opacity:.30;min-height:800px;", :skip_pipeline => true) %>
+  </div>
+
+
+  <!-- input form here -->
+  <div class="col-xs-offset-1 col-xs-10 col-md-offset-4 col-md-4" style="margin-top:15%;border:solid 0px;background:rgba(255, 255, 255, .4);border-radius:15px;">
+
+    <%= form_tag query_path, :remote => true do %>
+    <!-- there is no model here so we will use form_tag -->
+
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+     <!-- spacer -->
+     <div class="col-xs-12" style="height:20px;"></div>
+
+     <div class="col-xs-12" style="height:45px;">
+       <span class="" style="color:#575759;color:#9dbed7;font-size:20px;font-family:Titan One, cursive;">
+         weather_app
+       </span>
+     </div>
+
+     <div class="col-xs-12" style="font-size:11px;color:#858A8A;margin-bottom:15px;">
+       <b>Street Address 1</b><br>
+       <%= text_field_tag :addr_line_1, nil, :class => "form-control2", :style => "color:#575759;font-size:15px;" %>
+     </div>
+
+     <div class="col-xs-12" style="font-size:11px;color:#858A8A;margin-bottom:5px;">
+       <b>Street Address 2</b><br>
+       <%= text_field_tag :addr_line_2, nil, :class => "form-control2", :style => "color:#575759;font-size:15px;" %>
+     </div>
+
+     <div class="col-xs-12" style="font-size:11px;color:#858A8A;margin-bottom:5px;">
+       <b>City</b><br>
+       <%= text_field_tag :city, nil, :class => "form-control2", :style => "color:#575759;font-size:15px;" %>
+     </div>
+
+     <div class="col-xs-12" style="font-size:11px;color:#858A8A;margin-bottom:5px;">
+       <b>State</b><br>
+       <%= text_field_tag :state, nil, :class => "form-control2", :style => "color:#575759;font-size:15px;" %>
+     </div>
+
+     <div class="col-xs-12" style="font-size:11px;color:#858A8A;margin-bottom:20px;">
+       <b>Postal Code</b><br>
+       <%= text_field_tag :postal_code, nil, :class => "form-control2", :style => "color:#575759;font-size:15px;" %>
+     </div>
+
+     <div class="col-xs-12" style="font-size:11px;color:#858A8A;margin-bottom:5px;">
+       <%=submit_tag "FIND WEATHER", :style => "background:#9dbed7;color:#ffffff;text-decoration:none;height:40px;", :class => "btn btn-md btn-block" %>
+     </div>
+
+     <!-- spacer -->
+     <div class="col-xs-12" style="height:30px;"></div>
+
+    <%end%> <!-- end do loop form -->
+  </div>
+
+</div>
+
+
+<!-- putting this inline to save time, instead of implementing webpacker to serve assests -->
+<style>
+
+  .form-control2 {
+    color:#575759;
+    padding:4px;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 0px;
+    border: solid 1px #cfd1d1;
+    background-color: rgba(208, 210, 210, 0.2);
+    outline: 0 none;
+    height: 40px;
+  }
+  .form-control2:focus {
+    color:#575759;
+    padding: 4px;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 1px 1px 1px rgba(255, 163, 222, 1) inset, 1px 1px 8px rgba(255, 163, 222, 1);
+    border: solid 1px rgba(255, 163, 222, 1);
+    background-color: rgba(208, 210, 210, .1);
+    outline: 0 none;
+    height: 40px;
+  }
+
+</style>

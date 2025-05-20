@@ -1,0 +1,21 @@
+//take in @results_object variable.  Either re-populates or open modal
+
+//this is the jQuery way
+//$('#modal1-body').html("<%#= j render '/sessions/success_modal' %>"); //fill data
+
+//this is the plain js way
+ele = document.getElementById('modal1-body');
+ele.innerHTML = ("<%= j render '/sessions/success_modal' %>");
+
+var myModal = document.getElementById('modal1');
+var modal = bootstrap.Modal.getInstance(myModal);
+
+if (modal) {
+  //show existing modal
+  modal.show()
+}
+else {
+  //create a new modal in js and show it
+  var myModal = new bootstrap.Modal(document.getElementById('modal1'))
+  myModal.show()
+};
