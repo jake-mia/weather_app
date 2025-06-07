@@ -12,13 +12,23 @@ class SessionsController < ApplicationController
     else
       #call api and create a new cache
       puts "****** #{@postal_code} is not cached, calling api"
-      interface = Interface.new
       #collect today's data (required)
-      interface.call_api(@postal_code,"current.json")
-      interface.create_cache_entry(@postal_code)
+      ##interface = Interface.new
+
+      ##interface.call_api(@postal_code,"forecast.json")
+      ##interface.add_forecast_to_cache_entry(@postal_code)
+
       #collect forecast (optional)
-      interface.call_api(@postal_code,"forecast.json")
-      interface.add_forecast_to_cache_entry(@postal_code)
+      ##interface.call_api(@postal_code,"current.json")
+      ##interface.create_cache_entry(@postal_code)
+
+      #collect today's data (required)
+      InterfaceTwo.call_api(@postal_code,"current.json")
+      InterfaceTwo.create_cache_entry(@postal_code)
+
+      #collect forecast (optional)
+      InterfaceTwo.call_api(@postal_code,"forecast.json")
+      InterfaceTwo.add_forecast_to_cache_entry(@postal_code)
     end
 
     choose_outcome

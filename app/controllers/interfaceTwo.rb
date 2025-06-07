@@ -1,21 +1,19 @@
-class Interface
+
+class InterfaceTwo
   include HTTParty
 
-  def initialize
-    #setup static interface values
-    @api_url = "http://api.weatherapi.com"
-    @api_version = "v1"
-    @api_key = Rails.application.credentials.api_key
-    @options = 'key=' + @api_key + '&aqi=no'
-  end
+  @api_url = "http://api.weatherapi.com"
+  @api_version = "v1"
+  @api_key = Rails.application.credentials.api_key
+  @options = 'key=' + @api_key + '&aqi=no'
 
-  def call_api(postal_code,end_point)
+  def self.call_api(postal_code,end_point)
     #response = HTTParty.get('http://api.weatherapi.com/v1/current.json?key=12345&q=' + postal_code + '&aqi=no')
     #self.class.get()
     @response = self.get(@api_url + "/" + @api_version + "/" + end_point + "?" + @options + '&q=' + postal_code)
   end
 
-  def create_cache_entry(postal_code)
+  def self.create_cache_entry(postal_code)
 
     if @response.present? && @response.code == 200 #@response.success?
       #HTTParty ran correctly
@@ -37,7 +35,7 @@ class Interface
 
   end
 
-  def add_forecast_to_cache_entry(postal_code)
+  def self.add_forecast_to_cache_entry(postal_code)
     #this is optional, add more keys to the cache, don't care if it fails
     if @response.present? && @response.code == 200
       #HTTParty ran correctly
@@ -51,17 +49,17 @@ class Interface
     end
   end
 
-  def result_object(postal_code)
+  def self.result_object(postal_code)
     #return the cache object
     {postal_code: postal_code, response_code: @response.code, response_message: @response.message, save_time: DateTime.now, name: @response.parsed_response["location"]["name"], country: @response.parsed_response["location"]["country"], temp_f: @response.parsed_response["current"]["temp_f"], condition: @response.parsed_response["current"]["condition"]["text"] }
   end
 
-  def code
+  def self.code
     #return the HTTP code 200/404/etc
     @response.code
   end
 
-  def message
+  def self.message
     #return the HTTP message success/unauthorized/etc
     @response.message
   end
