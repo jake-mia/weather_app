@@ -1,4 +1,3 @@
-
 class InterfaceTwo
   include HTTParty
 
@@ -15,7 +14,7 @@ class InterfaceTwo
 
   def self.create_cache_entry(postal_code)
 
-    if @response.present? && @response.code == 200 #@response.success?
+    if @response.success? #@response.present? && @response.code == 200
       #HTTParty ran correctly
       #slim down data for caching and passing to the front end
       result_object = self.result_object(postal_code)
@@ -23,12 +22,12 @@ class InterfaceTwo
       Rails.cache.write(postal_code, result_object, expires_in: 30.minutes)
     else
       #incase HTTParty blows up and there is no response object
-      @code = self.code
-      @code ||= "500"
-      @message = self.message
-      @message ||= "no response"
+      code = self.code
+      code ||= "500"
+      message = self.message
+      message ||= "no response"
       #create a smaller error object
-      result_object = {postal_code: postal_code, response_code: @code, response_message: @message, save_time: DateTime.now }
+      result_object = {postal_code: postal_code, response_code: code, response_message: message, save_time: DateTime.now }
       #save data to cache for 5 seconds to allow the failure view to render
       Rails.cache.write(postal_code, result_object, expires_in: 5.seconds)
     end
@@ -37,7 +36,7 @@ class InterfaceTwo
 
   def self.add_forecast_to_cache_entry(postal_code)
     #this is optional, add more keys to the cache, don't care if it fails
-    if @response.present? && @response.code == 200
+    if @response.success? #@response.present? && @response.code == 200
       #HTTParty ran correctly
       result_object = Rails.cache.read(postal_code)
       result_object[:day1] = @response.parsed_response["forecast"]["forecastday"][0]["date"] #"2025-05-19"
