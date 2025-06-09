@@ -23,11 +23,11 @@ This project was created for a code assessment.
   - I kept getting a logger error trying to start rails, here is the fix:
    vi ~/.rbenv/versions/3.1.6/lib/ruby/gems/3.1.0/gems/activesupport-6.1.7.8/lib/active_support/logger_thread_safe_level.rb
 
-    ================================== start
+
     require 'logger' <= add this line above the line below
 
     module ActiveSupport
-    =================================== stop
+    
 
   - You may need to delete yarn.lock, not sure
   - webpacker:install  #you could do "--skip-javascript" during creation, but i want to keep the options open, so i ran it for a basic install
