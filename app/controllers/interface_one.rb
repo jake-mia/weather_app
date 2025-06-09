@@ -1,4 +1,4 @@
-class Interface
+class InterfaceOne
   include HTTParty
 
   def initialize
